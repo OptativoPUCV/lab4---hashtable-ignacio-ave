@@ -201,13 +201,15 @@ Pair *firstMap(HashMap *map) {
 }
 
 Pair *nextMap(HashMap *map) {
-  long pos = (map->current + 1);
-  for (long i = map->current; i < map->capacity; i++, pos++) {
-    if (map->buckets[pos])
-      if (map->buckets[pos]->key) {
-        map->current = pos;
-        return map->buckets[pos];
-      }
+  if (map == NULL)
+    return NULL;
+
+  for (long i = map->current + 1; i < map->capacity; i++) {
+    if (map->buckets[i] && map->buckets[i]->key) {
+      map->current = i;
+      return map->buckets[i];
+    }
+    continue;
   }
   return NULL;
 }
