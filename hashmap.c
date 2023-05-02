@@ -140,11 +140,21 @@ HashMap *createMap(long capacity) {
 // buscar el dato y luego marcarlo para que no sea válido. No elimine el par,
 // sólo invalídelo asignando NULL a la clave (pair->key=NULL). Recuerde
 // actualizar la variable size.
-
 void eraseMap(HashMap *map, char *key) {
-  if (searchMap(map, key)) {
-    map->buckets[map->current]->key = NULL;
-    map->size--;
+  if (map == NULL || key == NULL)
+    return;
+  long indicehash = hash(key, map->capacity);
+  for (long i = 0; i < map->capacity; i++) {
+    if (!map->buckets[indicehash])
+      return;
+    if (is_equal(key, map->buckets[indicehash]->key)) {
+      map->buckets[indicehash]->key = NULL;
+      map->size--;
+      return;
+    }
+    indicehash++;
+    if (indicehash == map->capacity)
+      indicehash = 0;
   }
 }
 // 3.- Implemente la función Pair * searchMap(HashMap * map, char * key), la
