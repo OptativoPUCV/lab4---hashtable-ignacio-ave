@@ -686,3 +686,9 @@ Tue 02 May 2023 06:45:53 PM UTC:
  tests:  17|0
 total_score: 70/70
 7d2a2eb
+Tue 02 May 2023 06:48:40 PM UTC: 
+ hashmap.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+ tests:  17|0
+total_score: 70/70
+b55adf4

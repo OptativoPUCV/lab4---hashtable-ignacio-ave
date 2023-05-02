@@ -105,16 +105,16 @@ void insertMap(HashMap *map, char *key, void *value) {
 // insertMap que ya implementó).
 
 void enlarge(HashMap *map) {
-  // enlarge_called = 1; //no borrar (testing purposes)
-  Pair **old_buckets = map->buckets;
-  map->buckets = (Pair **)calloc(map->capacity * 2, sizeof(Pair *));
-  map->capacity *= 2;
+  enlarge_called = 1; // no borrar (testing purposes)
+  Pair **antiguos_buckets = map->buckets;
+  map->capacity = map->capacity * 2;
+  map->buckets = (Pair **)malloc(sizeof(Pair *) * map->capacity);
   map->size = 0;
   map->current = -1;
+
   for (long i = 0; i < map->capacity / 2; i++) {
-    if (old_buckets[i]) {
-      if (old_buckets[i]->key)
-        insertMap(map, old_buckets[i]->key, old_buckets[i]->value);
+    if (antiguos_buckets[i] && antiguos_buckets[i]->key != NULL) {
+      insertMap(map, antiguos_buckets[i]->key, antiguos_buckets[i]->value);
     }
   }
 }
