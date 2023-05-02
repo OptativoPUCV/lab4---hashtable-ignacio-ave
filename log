@@ -339,3 +339,344 @@ test.c:439:59: error: invalid use of incomplete typedef ‘HashMap’
 cc1: all warnings being treated as errors
 Compilation failed
 5c99d6b
+Tue 02 May 2023 06:45:31 PM UTC: 
+In file included from test.c:4:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:48:12: error: invalid use of incomplete typedef ‘HashMap’
+   48 |     if (map->size >= map->capacity * 0.7) enlarge(map);
+      |            ^~
+hashmap.c:48:25: error: invalid use of incomplete typedef ‘HashMap’
+   48 |     if (map->size >= map->capacity * 0.7) enlarge(map);
+      |                         ^~
+hashmap.c:50:31: error: invalid use of incomplete typedef ‘HashMap’
+   50 |     long index = hash(key, map->capacity);
+      |                               ^~
+hashmap.c:51:15: error: invalid use of incomplete typedef ‘HashMap’
+   51 |     while (map->buckets[index] != NULL && map->buckets[index]->key != NULL) {
+      |               ^~
+hashmap.c:51:46: error: invalid use of incomplete typedef ‘HashMap’
+   51 |     while (map->buckets[index] != NULL && map->buckets[index]->key != NULL) {
+      |                                              ^~
+hashmap.c:52:34: error: invalid use of incomplete typedef ‘HashMap’
+   52 |         index = (index + 1) % map->capacity;
+      |                                  ^~
+hashmap.c:55:12: error: invalid use of incomplete typedef ‘HashMap’
+   55 |     if (map->buckets[index] == NULL|| map->buckets[index]->key == NULL) {
+      |            ^~
+hashmap.c:55:42: error: invalid use of incomplete typedef ‘HashMap’
+   55 |     if (map->buckets[index] == NULL|| map->buckets[index]->key == NULL) {
+      |                                          ^~
+hashmap.c:56:12: error: invalid use of incomplete typedef ‘HashMap’
+   56 |         map->buckets[index] = createPair(key, value);
+      |            ^~
+hashmap.c:57:12: error: invalid use of incomplete typedef ‘HashMap’
+   57 |         map->size++;
+      |            ^~
+hashmap.c:59:12: error: invalid use of incomplete typedef ‘HashMap’
+   59 |         map->buckets[index]->value = value;
+      |            ^~
+hashmap.c:61:8: error: invalid use of incomplete typedef ‘HashMap’
+   61 |     map->current = index;
+      |        ^~
+hashmap.c: In function ‘enlarge’:
+hashmap.c:77:30: error: invalid use of incomplete typedef ‘HashMap’
+   77 |     Pair ** old_buckets = map->buckets;
+      |                              ^~
+hashmap.c:78:28: error: invalid use of incomplete typedef ‘HashMap’
+   78 |     long old_capacity = map->capacity;
+      |                            ^~
+hashmap.c:79:8: error: invalid use of incomplete typedef ‘HashMap’
+   79 |     map->capacity *= 2;
+      |        ^~
+hashmap.c:84:8: error: invalid use of incomplete typedef ‘HashMap’
+   84 |     map->buckets = (Pair **)calloc(map->capacity, sizeof(Pair *));
+      |        ^~
+hashmap.c:84:39: error: invalid use of incomplete typedef ‘HashMap’
+   84 |     map->buckets = (Pair **)calloc(map->capacity, sizeof(Pair *));
+      |                                       ^~
+hashmap.c:85:11: error: invalid use of incomplete typedef ‘HashMap’
+   85 |     if(map->buckets == NULL) {
+      |           ^~
+hashmap.c:86:12: error: invalid use of incomplete typedef ‘HashMap’
+   86 |         map->buckets = old_buckets;
+      |            ^~
+hashmap.c:87:12: error: invalid use of incomplete typedef ‘HashMap’
+   87 |         map->capacity = old_capacity;
+      |            ^~
+hashmap.c:91:8: error: invalid use of incomplete typedef ‘HashMap’
+   91 |     map->size = 0;
+      |        ^~
+hashmap.c: In function ‘createMap’:
+hashmap.c:105:47: error: invalid application of ‘sizeof’ to incomplete type ‘HashMap’
+  105 |     HashMap * mapa = (HashMap *)malloc(sizeof(HashMap));
+      |                                               ^~~~~~~
+hashmap.c:108:9: error: invalid use of incomplete typedef ‘HashMap’
+  108 |     mapa->buckets = (Pair **)calloc(capacity, sizeof(Pair *));
+      |         ^~
+hashmap.c:110:13: error: invalid use of incomplete typedef ‘HashMap’
+  110 |     if (mapa->buckets == NULL) {
+      |             ^~
+hashmap.c:115:9: error: invalid use of incomplete typedef ‘HashMap’
+  115 |     mapa->size = 0;
+      |         ^~
+hashmap.c:116:9: error: invalid use of incomplete typedef ‘HashMap’
+  116 |     mapa->capacity = capacity;
+      |         ^~
+hashmap.c:117:9: error: invalid use of incomplete typedef ‘HashMap’
+  117 |     mapa->current = -1;
+      |         ^~
+hashmap.c: In function ‘eraseMap’:
+hashmap.c:128:12: error: invalid use of incomplete typedef ‘HashMap’
+  128 |         map->size--;
+      |            ^~
+hashmap.c: In function ‘searchMap’:
+hashmap.c:148:31: error: invalid use of incomplete typedef ‘HashMap’
+  148 |     long index = hash(key, map->capacity);
+      |                               ^~
+hashmap.c:149:14: error: invalid use of incomplete typedef ‘HashMap’
+  149 |     while(map->buckets[index] != NULL && map->buckets[index]->key != NULL) {
+      |              ^~
+hashmap.c:149:45: error: invalid use of incomplete typedef ‘HashMap’
+  149 |     while(map->buckets[index] != NULL && map->buckets[index]->key != NULL) {
+      |                                             ^~
+hashmap.c:150:24: error: invalid use of incomplete typedef ‘HashMap’
+  150 |         if(is_equal(map->buckets[index]->key, key)) {
+      |                        ^~
+hashmap.c:151:16: error: invalid use of incomplete typedef ‘HashMap’
+  151 |             map->current = index;
+      |                ^~
+hashmap.c:152:23: error: invalid use of incomplete typedef ‘HashMap’
+  152 |             return map->buckets[index];
+      |                       ^~
+hashmap.c:154:34: error: invalid use of incomplete typedef ‘HashMap’
+  154 |         index = (index + 1) % map->capacity;
+      |                                  ^~
+hashmap.c: In function ‘firstMap’:
+hashmap.c:164:29: error: invalid use of incomplete typedef ‘HashMap’
+  164 |     for (long i = 0; i < map->capacity; i++) {
+      |                             ^~
+hashmap.c:165:16: error: invalid use of incomplete typedef ‘HashMap’
+  165 |         if (map->buckets[i] != NULL && map->buckets[i]->key != NULL) {
+      |                ^~
+hashmap.c:165:43: error: invalid use of incomplete typedef ‘HashMap’
+  165 |         if (map->buckets[i] != NULL && map->buckets[i]->key != NULL) {
+      |                                           ^~
+hashmap.c:166:16: error: invalid use of incomplete typedef ‘HashMap’
+  166 |             map->current = i;
+      |                ^~
+hashmap.c:167:23: error: invalid use of incomplete typedef ‘HashMap’
+  167 |             return map->buckets[i];
+      |                       ^~
+hashmap.c: In function ‘nextMap’:
+hashmap.c:177:22: error: invalid use of incomplete typedef ‘HashMap’
+  177 |     for (long i = map->current + 1; i < map->capacity; i++) {
+      |                      ^~
+hashmap.c:177:44: error: invalid use of incomplete typedef ‘HashMap’
+  177 |     for (long i = map->current + 1; i < map->capacity; i++) {
+      |                                            ^~
+hashmap.c:178:16: error: invalid use of incomplete typedef ‘HashMap’
+  178 |         if (map->buckets[i] != NULL && map->buckets[i]->key != NULL) {
+      |                ^~
+hashmap.c:178:43: error: invalid use of incomplete typedef ‘HashMap’
+  178 |         if (map->buckets[i] != NULL && map->buckets[i]->key != NULL) {
+      |                                           ^~
+hashmap.c:179:16: error: invalid use of incomplete typedef ‘HashMap’
+  179 |             map->current = i;
+      |                ^~
+hashmap.c:180:23: error: invalid use of incomplete typedef ‘HashMap’
+  180 |             return map->buckets[i];
+      |                       ^~
+test.c: In function ‘initializeMap’:
+test.c:43:46: error: invalid application of ‘sizeof’ to incomplete type ‘HashMap’
+   43 |     HashMap * map = (HashMap *)malloc(sizeof(HashMap));
+      |                                              ^~~~~~~
+test.c:44:8: error: invalid use of incomplete typedef ‘HashMap’
+   44 |     map->buckets = (Pair **) calloc (10,sizeof(Pair *));
+      |        ^~
+test.c:45:8: error: invalid use of incomplete typedef ‘HashMap’
+   45 |     map->capacity = 10;
+      |        ^~
+test.c:52:12: error: invalid use of incomplete typedef ‘HashMap’
+   52 |         map->buckets[hashs[i]] =
+      |            ^~
+test.c:56:8: error: invalid use of incomplete typedef ‘HashMap’
+   56 |     map->size=6;
+      |        ^~
+test.c:48:9: error: variable ‘hashs’ set but not used [-Werror=unused-but-set-variable]
+   48 |     int hashs[6]={8,7,6,0,4,2}; //using function in hashmap.c
+      |         ^~~~~
+test.c: In function ‘createMap_test2’:
+test.c:79:13: error: invalid use of incomplete typedef ‘HashMap’
+   79 |       if(map->buckets[i]!=NULL) {err_msg("bucket no nulo"); return 0;}
+      |             ^~
+test.c: In function ‘createMap_test3’:
+test.c:85:11: error: invalid use of incomplete typedef ‘HashMap’
+   85 |     if(map->size !=0 || map->capacity!=10 || map->current!=-1){
+      |           ^~
+test.c:85:28: error: invalid use of incomplete typedef ‘HashMap’
+   85 |     if(map->size !=0 || map->capacity!=10 || map->current!=-1){
+      |                            ^~
+test.c:85:49: error: invalid use of incomplete typedef ‘HashMap’
+   85 |     if(map->size !=0 || map->capacity!=10 || map->current!=-1){
+      |                                                 ^~
+test.c:91:11: error: invalid use of incomplete typedef ‘HashMap’
+   91 |     if(map->size !=0 || map->capacity!=5 || map->current!=-1){
+      |           ^~
+test.c:91:28: error: invalid use of incomplete typedef ‘HashMap’
+   91 |     if(map->size !=0 || map->capacity!=5 || map->current!=-1){
+      |                            ^~
+test.c:91:48: error: invalid use of incomplete typedef ‘HashMap’
+   91 |     if(map->size !=0 || map->capacity!=5 || map->current!=-1){
+      |                                                ^~
+test.c: In function ‘insert_test1’:
+test.c:143:11: error: invalid use of incomplete typedef ‘HashMap’
+  143 |     if(map->buckets[3] == NULL){
+      |           ^~
+test.c:148:20: error: invalid use of incomplete typedef ‘HashMap’
+  148 |     if( strcmp (map->buckets[3]->key, ":key")!=0 ||
+      |                    ^~
+test.c:149:25: error: invalid use of incomplete typedef ‘HashMap’
+  149 |              strcmp (map->buckets[3]->value, "value")!=0 ){
+      |                         ^~
+test.c:154:11: error: invalid use of incomplete typedef ‘HashMap’
+  154 |     if(map->size != 7){
+      |           ^~
+test.c: In function ‘insert_test2’:
+test.c:172:11: error: invalid use of incomplete typedef ‘HashMap’
+  172 |     if(map->buckets[1] != NULL){
+      |           ^~
+test.c: In function ‘insert_test3’:
+test.c:183:11: error: invalid use of incomplete typedef ‘HashMap’
+  183 |     if(map->buckets[9]==NULL || !is_equal(map->buckets[9]->value,"value") ){
+      |           ^~
+test.c:183:46: error: invalid use of incomplete typedef ‘HashMap’
+  183 |     if(map->buckets[9]==NULL || !is_equal(map->buckets[9]->value,"value") ){
+      |                                              ^~
+test.c: In function ‘insert_test4’:
+test.c:196:11: error: invalid use of incomplete typedef ‘HashMap’
+  196 |     if(map->buckets[9]==NULL || !is_equal(map->buckets[9]->value,"value") ){
+      |           ^~
+test.c:196:46: error: invalid use of incomplete typedef ‘HashMap’
+  196 |     if(map->buckets[9]==NULL || !is_equal(map->buckets[9]->value,"value") ){
+      |                                              ^~
+test.c:203:8: error: invalid use of incomplete typedef ‘HashMap’
+  203 |     map->size=6;
+      |        ^~
+test.c:206:11: error: invalid use of incomplete typedef ‘HashMap’
+  206 |     if(map->buckets[1]==NULL || !is_equal(map->buckets[1]->value,"value") ){
+      |           ^~
+test.c:206:46: error: invalid use of incomplete typedef ‘HashMap’
+  206 |     if(map->buckets[1]==NULL || !is_equal(map->buckets[1]->value,"value") ){
+      |                                              ^~
+test.c: In function ‘insert_test5’:
+test.c:219:8: error: invalid use of incomplete typedef ‘HashMap’
+  219 |     map->size = 7; //se fuerza size=7
+      |        ^~
+test.c: In function ‘search_test1’:
+test.c:242:18: error: invalid use of incomplete typedef ‘HashMap’
+  242 |     if(ret != map->buckets[7]) {
+      |                  ^~
+test.c:248:11: error: invalid use of incomplete typedef ‘HashMap’
+  248 |     if(map->current!=7){
+      |           ^~
+test.c: In function ‘search_test2’:
+test.c:259:8: error: invalid use of incomplete typedef ‘HashMap’
+  259 |     map->buckets[9]=createPair(_strdup("key"),_strdup("value"));
+      |        ^~
+test.c:268:18: error: invalid use of incomplete typedef ‘HashMap’
+  268 |     if(ret != map->buckets[9]) {
+      |                  ^~
+test.c: In function ‘search_test3’:
+test.c:280:70: error: invalid use of incomplete typedef ‘HashMap’
+  280 |         sprintf(msg,"searchMap retorna un elemento con clave %s", map->buckets[map->current]->key);
+      |                                                                      ^~
+test.c:280:83: error: invalid use of incomplete typedef ‘HashMap’
+  280 |         sprintf(msg,"searchMap retorna un elemento con clave %s", map->buckets[map->current]->key);
+      |                                                                                   ^~
+test.c: In function ‘erase_test1’:
+test.c:294:11: error: invalid use of incomplete typedef ‘HashMap’
+  294 |     if(map->buckets[0]==NULL){
+      |           ^~
+test.c:299:11: error: invalid use of incomplete typedef ‘HashMap’
+  299 |     if(map->buckets[0]->key !=NULL) {
+      |           ^~
+test.c:304:11: error: invalid use of incomplete typedef ‘HashMap’
+  304 |     if(map->size != 5){
+      |           ^~
+test.c: In function ‘erase_test2’:
+test.c:317:8: error: invalid use of incomplete typedef ‘HashMap’
+  317 |     map->buckets[9]=createPair(_strdup("key"),_strdup("value"));
+      |        ^~
+test.c:322:11: error: invalid use of incomplete typedef ‘HashMap’
+  322 |     if(map->buckets[9]->key!=NULL){
+      |           ^~
+test.c: In function ‘erase_test3’:
+test.c:335:11: error: invalid use of incomplete typedef ‘HashMap’
+  335 |     if(map->buckets[2]->key==NULL){
+      |           ^~
+test.c: In function ‘first_test’:
+test.c:355:18: error: invalid use of incomplete typedef ‘HashMap’
+  355 |     if(aux != map->buckets[0]){
+      |                  ^~
+test.c:360:11: error: invalid use of incomplete typedef ‘HashMap’
+  360 |     if(map->current != 0){
+      |           ^~
+test.c:368:8: error: invalid use of incomplete typedef ‘HashMap’
+  368 |     map->buckets[0]->key=NULL;
+      |        ^~
+test.c:373:18: error: invalid use of incomplete typedef ‘HashMap’
+  373 |     if(aux != map->buckets[2]){
+      |                  ^~
+test.c:378:11: error: invalid use of incomplete typedef ‘HashMap’
+  378 |     if(map->current != 2){
+      |           ^~
+test.c: In function ‘next_test’:
+test.c:393:8: error: invalid use of incomplete typedef ‘HashMap’
+  393 |     map->current=0;
+      |        ^~
+test.c:394:25: error: invalid use of incomplete typedef ‘HashMap’
+  394 |     if(nextMap(map)!=map->buckets[2]){
+      |                         ^~
+test.c:400:11: error: invalid use of incomplete typedef ‘HashMap’
+  400 |     if(map->current!=2){
+      |           ^~
+test.c:406:8: error: invalid use of incomplete typedef ‘HashMap’
+  406 |     map->current=7;
+      |        ^~
+test.c:407:25: error: invalid use of incomplete typedef ‘HashMap’
+  407 |     if(nextMap(map)!=map->buckets[8]){
+      |                         ^~
+test.c: In function ‘enlarge_test’:
+test.c:429:23: error: invalid use of incomplete typedef ‘HashMap’
+  429 |     void* value3 = map->buckets[0]->value;
+      |                       ^~
+test.c:430:23: error: invalid use of incomplete typedef ‘HashMap’
+  430 |     void* value5 = map->buckets[2]->value;
+      |                       ^~
+test.c:431:23: error: invalid use of incomplete typedef ‘HashMap’
+  431 |     void* value4 = map->buckets[4]->value;
+      |                       ^~
+test.c:435:11: error: invalid use of incomplete typedef ‘HashMap’
+  435 |     if(map->buckets[0]->value!=value3 || map->buckets[2]!=NULL || map->buckets[12]->value != value5 || map->buckets[4]->value!=value4){
+      |           ^~
+test.c:435:45: error: invalid use of incomplete typedef ‘HashMap’
+  435 |     if(map->buckets[0]->value!=value3 || map->buckets[2]!=NULL || map->buckets[12]->value != value5 || map->buckets[4]->value!=value4){
+      |                                             ^~
+test.c:435:70: error: invalid use of incomplete typedef ‘HashMap’
+  435 |     if(map->buckets[0]->value!=value3 || map->buckets[2]!=NULL || map->buckets[12]->value != value5 || map->buckets[4]->value!=value4){
+      |                                                                      ^~
+test.c:435:107: error: invalid use of incomplete typedef ‘HashMap’
+  435 |     if(map->buckets[0]->value!=value3 || map->buckets[2]!=NULL || map->buckets[12]->value != value5 || map->buckets[4]->value!=value4){
+      |                                                                                                           ^~
+test.c:437:22: error: invalid use of incomplete typedef ‘HashMap’
+  437 |         for(i=0;i<map->capacity;i++){
+      |                      ^~
+test.c:438:19: error: invalid use of incomplete typedef ‘HashMap’
+  438 |             if(map->buckets[i]==NULL) sprintf(msg,"%.100s(null)  ",msg);
+      |                   ^~
+test.c:439:59: error: invalid use of incomplete typedef ‘HashMap’
+  439 |             else sprintf(msg,"%.100s%s  ", msg, (char*)map->buckets[i]->value);
+      |                                                           ^~
+cc1: all warnings being treated as errors
+Compilation failed
+403234c
